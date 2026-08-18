@@ -1,0 +1,42 @@
+# Terraform-generated files
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+terraform.tfvars
+*.auto.tfvars
+
+# Credentials and sensitive files
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12
+*.csv
+credentials
+secrets.*
+**/credentials
+**/secrets.*
+
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python-generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Terraform plan files
+*.tfplan
+tfplan
