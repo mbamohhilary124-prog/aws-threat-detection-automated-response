@@ -9,3 +9,9 @@ variable "environment" {
   type        = string
   default     = "security-lab"
 }
+
+variable "allow_force_destroy" {
+  description = "Allows Terraform to delete the lab log bucket and its contents during cleanup. Keep false in production."
+  type        = bool
+  default     = true
+}
