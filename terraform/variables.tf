@@ -15,3 +15,14 @@ variable "allow_force_destroy" {
   type        = bool
   default     = true
 }
+
+variable "notification_email" {
+  description = "Email address that receives Amazon GuardDuty security alerts."
+  type        = string
+  sensitive   = true
+
+  validation {
+    condition     = can(regex("^[^@]+@[^@]+\\.[^@]+$", var.notification_email))
+    error_message = "The notification_email value must be a valid email address."
+  }
+}
