@@ -8,8 +8,11 @@ locals {
     "S3_DATA_EVENTS",
     "EKS_AUDIT_LOGS",
     "EBS_MALWARE_PROTECTION",
+    "RDS_LOGIN_EVENTS",
     "LAMBDA_NETWORK_LOGS",
-    "RUNTIME_MONITORING"
+    "RUNTIME_MONITORING",
+    "AI_PROTECTION",
+    "AI_ANALYST"
   ])
 
   guardduty_runtime_agents = toset([
