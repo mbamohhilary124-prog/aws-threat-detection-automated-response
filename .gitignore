@@ -40,3 +40,6 @@ venv/
 # Terraform plan files
 *.tfplan
 tfplan
+
+# Generated Lambda deployment package
+/terraform/lambda_response.zip
