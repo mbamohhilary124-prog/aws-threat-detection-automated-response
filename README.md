@@ -1,16 +1,18 @@
-\# AWS Threat Detection and Automated Response
+# AWS Threat Detection and Automated Response
+
+[![Security Project CI](https://github.com/mbamohhilary124-prog/aws-threat-detection-automated-response/actions/workflows/ci.yml/badge.svg)](https://github.com/mbamohhilary124-prog/aws-threat-detection-automated-response/actions/workflows/ci.yml)
 
 
 
-!\[Status](https://img.shields.io/badge/status-in%20development-yellow)
+![Status](https://img.shields.io/badge/status-in%20development-yellow)
 
-!\[AWS](https://img.shields.io/badge/cloud-AWS-FF9900)
+![AWS](https://img.shields.io/badge/cloud-AWS-FF9900)
 
-!\[Terraform](https://img.shields.io/badge/IaC-Terraform-7B42BC)
+![Terraform](https://img.shields.io/badge/IaC-Terraform-7B42BC)
 
 
 
-\## Project Overview
+## Project Overview
 
 
 
@@ -26,7 +28,7 @@ The environment will collect audit activity, detect suspicious behavior, central
 
 
 
-\## Business Problem
+## Business Problem
 
 
 
@@ -34,127 +36,92 @@ Manually reviewing and responding to cloud-security findings can delay containme
 
 
 
-\## Planned Architecture
-
-
+## Implemented Architecture
 
 ```mermaid
-
 flowchart TD
-
-&#x20;   CT\["AWS CloudTrail"] --> S3\["Encrypted S3 Logs"]
-
-&#x20;   GD\["Amazon GuardDuty"] --> SH\["AWS Security Hub"]
-
-&#x20;   CF\["AWS Config"] --> SH
-
-&#x20;   SH --> EB\["Amazon EventBridge"]
-
-&#x20;   EB --> LA\["AWS Lambda"]
-
-&#x20;   LA --> SNS\["Amazon SNS Alert"]
-
+    CT["AWS CloudTrail"] --> S3["Encrypted S3 audit logs"]
+    GD["Amazon GuardDuty"] --> EB["Amazon EventBridge"]
+    EB --> SNS["SNS email alert"]
+    EB --> LA["Dry-run Lambda"]
+    LA --> CW["CloudWatch Logs"]
 ```
 
+## Implemented Security Controls
 
+- Multi-Region AWS CloudTrail audit logging
+- Private, versioned, and encrypted S3 log storage
+- S3 public-access blocking and secure-transport enforcement
+- Amazon GuardDuty threat detection with cost-controlled protection plans
+- EventBridge routing for findings with severity `>= 4`
+- Confirmed SNS email security notifications
+- Least-privilege Lambda execution role
+- Python-based response decision engine
+- Mandatory `DRY_RUN` response guardrail
+- CloudWatch response logging and audit evidence
+- Terraform-managed infrastructure
+- Automated Lambda tests and Terraform validation in GitHub Actions
+- No permanent AWS credentials stored in GitHub
 
-\## Planned Security Controls
+## Roadmap
 
+- Add AWS Security Hub findings aggregation
+- Add AWS Config monitoring
+- Add controlled and reversible EC2 isolation
+- Add Terraform security scanning
+- Add GitHub Actions OIDC for authorized AWS workflows
 
+## Repository Structure
 
-\- CloudTrail audit logging
+| Path | Purpose |
+|---|---|
+| `.github/workflows/` | GitHub Actions CI workflows |
+| `diagrams/` | Architecture diagram assets |
+| `docs/` | Implementation, deployment, and testing evidence |
+| `lambda/` | Python automated-response handlers |
+| `terraform/` | AWS infrastructure as code |
+| `tests/` | Automated Lambda unit tests |
+| `.gitignore` | Excludes state, plans, credentials, and generated files |
+| `README.md` | Project overview and architecture |
+| `SECURITY.md` | Secure-use and disclosure guidance |
 
-\- Encrypted S3 log storage
-
-\- GuardDuty threat detection
-
-\- Security Hub findings aggregation
-
-\- AWS Config monitoring
-
-\- EventBridge security-event routing
-
-\- Least-privilege Lambda execution role
-
-\- Python-based automated response
-
-\- SNS security notifications
-
-\- Terraform security scanning
-
-\- GitHub Actions with AWS OIDC authentication
-
-\- No permanent AWS credentials stored in GitHub
-
-
-
-\## Repository Structure
-
-
-
-```text
-
-.
-
-â”œâ”€â”€ .github/workflows/    # CI/CD and security scanning
-
-â”œâ”€â”€ diagrams/             # Architecture diagrams
-
-â”œâ”€â”€ docs/                 # Deployment and testing evidence
-
-â”œâ”€â”€ lambda/               # Python response functions
-
-â”œâ”€â”€ terraform/            # AWS infrastructure as code
-
-â”œâ”€â”€ tests/                # Automated tests
-
-â”œâ”€â”€ .gitignore
-
-â”œâ”€â”€ README.md
-
-â””â”€â”€ SECURITY.md
-
-```
+## Learning Objectives
 
 
 
-\## Learning Objectives
+1. Provision AWS security services with Terraform.
+
+2. Apply least-privilege IAM permissions.
+
+3. Centralize AWS security findings.
+
+4. Build event-driven security automation.
+
+5. Test detection and response workflows safely.
+
+6. Document technical decisions and evidence.
+
+7. Integrate security checks into CI/CD.
 
 
 
-1\. Provision AWS security services with Terraform.
-
-2\. Apply least-privilege IAM permissions.
-
-3\. Centralize AWS security findings.
-
-4\. Build event-driven security automation.
-
-5\. Test detection and response workflows safely.
-
-6\. Document technical decisions and evidence.
-
-7\. Integrate security checks into CI/CD.
+## Prerequisites
 
 
 
-\## Prerequisites
+- AWS account
+
+- AWS CLI
+
+- Terraform
+
+- Git and GitHub
+
+- PowerShell or another terminal
 
 
 
-\- AWS account
-
-\- AWS CLI
-
-\- Terraform
-
-\- Git and GitHub
-
-\- PowerShell or another terminal
-
-
-
-\## Cost and Cleanup
+## Cost and Cleanup
 
 
 
@@ -162,7 +129,7 @@ Some services may generate AWS charges. Resources will be deployed only when req
 
 
 
-\## Security Notice
+## Security Notice
 
 
 
@@ -170,7 +137,7 @@ This repository must not contain credentials, Terraform state, AWS account numbe
 
 
 
-\## Author
+## Author
 
 
 
