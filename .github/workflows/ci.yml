@@ -65,21 +65,21 @@ jobs:
         with:
           scan-type: "config"
           scan-ref: "terraform"
-          format: "table"
-          output: "trivy-report.txt"
+          format: "json"
+          output: "trivy-report.json"
           severity: "HIGH,CRITICAL"
           exit-code: "0"
           hide-progress: true
 
       - name: Display Trivy report
         if: always()
-        run: cat trivy-report.txt
+        run: cat trivy-report.json
 
       - name: Upload Trivy report
         if: always()
         uses: actions/upload-artifact@v7
         with:
           name: trivy-terraform-report
-          path: trivy-report.txt
+          path: trivy-report.json
           retention-days: 14
           if-no-files-found: error
