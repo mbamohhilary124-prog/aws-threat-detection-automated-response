@@ -52,6 +52,7 @@ flowchart TD
 - Multi-Region AWS CloudTrail audit logging
 - Private, versioned, and encrypted S3 log storage
 - S3 public-access blocking and secure-transport enforcement
+- Customer-managed KMS encryption with automatic rotation for CloudTrail, S3, and SNS
 - Amazon GuardDuty threat detection with cost-controlled protection plans
 - EventBridge routing for findings with severity `>= 4`
 - Confirmed SNS email security notifications
@@ -60,7 +61,7 @@ flowchart TD
 - Mandatory `DRY_RUN` response guardrail
 - CloudWatch response logging and audit evidence
 - Terraform-managed infrastructure
-- Automated Lambda tests and Terraform validation in GitHub Actions
+- Automated Lambda tests, Terraform validation, and blocking Trivy security scanning in GitHub Actions
 - No permanent AWS credentials stored in GitHub
 
 ## Roadmap
@@ -68,7 +69,6 @@ flowchart TD
 - Add AWS Security Hub findings aggregation
 - Add AWS Config monitoring
 - Add controlled and reversible EC2 isolation
-- Add Terraform security scanning
 - Add GitHub Actions OIDC for authorized AWS workflows
 
 ## Repository Structure

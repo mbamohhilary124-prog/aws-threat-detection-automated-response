@@ -915,4 +915,21 @@ A controlled GuardDuty sample finding successfully tested the complete response 
 - Actual resource modification: None
 
 The Lambda function evaluated the finding and proposed EC2 isolation, but no AWS resource was modified because `DRY_RUN` mode was enabled. Account IDs, finding IDs, request IDs, email addresses, and resource identifiers were excluded from this documentation.
+## KMS Hardening and Encrypted Pipeline Validation — August 24, 2026
+
+A shared customer-managed symmetric KMS key was implemented for the security lab.
+
+- Automatic key rotation: Enabled
+- Deletion window: 7 days
+- S3 audit-bucket encryption: SSE-KMS
+- S3 bucket keys: Enabled
+- CloudTrail customer-managed key encryption: Enabled
+- SNS server-side encryption: Enabled
+- Trivy findings `AWS-0015`, `AWS-0095`, and `AWS-0132`: Resolved
+- HIGH/CRITICAL Trivy CI gate: Enforced and passing
+
+A high-severity `Backdoor:EC2/C&CActivity.B` sample finding validated the encrypted response pipeline. EventBridge delivered the finding to the KMS-encrypted SNS topic and dry-run Lambda function. The email alert arrived successfully, and Lambda recorded `DRY_RUN_RECORDED` with the proposed action `ISOLATE_EC2_INSTANCE`. No AWS resource was modified.
+
+A final Terraform plan confirmed that the deployed infrastructure matched the configuration with no drift. Account IDs, resource IDs, finding IDs, request IDs, email addresses, and key identifiers were excluded from this evidence.
+
 **End of learning guide**
