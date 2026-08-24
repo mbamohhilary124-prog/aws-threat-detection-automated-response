@@ -899,4 +899,20 @@ output "guardduty_event_rule_name" {
 - Amazon S3 pricing: https://aws.amazon.com/s3/pricing/
 - Terraform language documentation: https://developer.hashicorp.com/terraform/language
 
+## End-to-End Dry-Run Validation — August 24, 2026
+
+A controlled GuardDuty sample finding successfully tested the complete response pipeline.
+
+- Finding type: `UnauthorizedAccess:EC2/MetadataDNSRebind`
+- Severity: `8.0` (High)
+- Resource type: `Instance`
+- EventBridge severity match: Passed
+- SNS email delivery: Passed
+- Lambda invocation: Passed
+- CloudWatch audit logging: Passed
+- Proposed action: `ISOLATE_EC2_INSTANCE`
+- Decision: `DRY_RUN_RECORDED`
+- Actual resource modification: None
+
+The Lambda function evaluated the finding and proposed EC2 isolation, but no AWS resource was modified because `DRY_RUN` mode was enabled. Account IDs, finding IDs, request IDs, email addresses, and resource identifiers were excluded from this documentation.
 **End of learning guide**
