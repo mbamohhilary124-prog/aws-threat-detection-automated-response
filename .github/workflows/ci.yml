@@ -68,7 +68,7 @@ jobs:
           format: "json"
           output: "trivy-report.json"
           severity: "HIGH,CRITICAL"
-          exit-code: "0"
+          exit-code: "1"
           hide-progress: true
 
       - name: Display Trivy report
