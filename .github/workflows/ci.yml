@@ -50,7 +50,9 @@ jobs:
         run: terraform -chdir=terraform init -backend=false -input=false
 
       - name: Validate Terraform
-        run: terraform -chdir=terraform validate -no-color  iac-security-scan:
+        run: terraform -chdir=terraform validate -no-color
+
+  iac-security-scan:
     name: Terraform security scan
     runs-on: ubuntu-24.04
 
