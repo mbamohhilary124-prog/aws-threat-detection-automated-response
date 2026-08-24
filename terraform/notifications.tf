@@ -1,6 +1,7 @@
 resource "aws_sns_topic" "guardduty_alerts" {
-  name         = "${var.environment}-guardduty-alerts"
-  display_name = "GuardDuty Alerts"
+  name              = "${var.environment}-guardduty-alerts"
+  display_name      = "GuardDuty Alerts"
+  kms_master_key_id = aws_kms_key.security_data.arn
 }
 
 resource "aws_sns_topic_subscription" "guardduty_email" {
