@@ -50,4 +50,20 @@ jobs:
         run: terraform -chdir=terraform init -backend=false -input=false
 
       - name: Validate Terraform
-        run: terraform -chdir=terraform validate -no-color
+        run: terraform -chdir=terraform validate -no-color  iac-security-scan:
+    name: Terraform security scan
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Scan Terraform for misconfigurations
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: "config"
+          scan-ref: "terraform"
+          format: "table"
+          severity: "HIGH,CRITICAL"
+          exit-code: "0"
+          hide-progress: true
