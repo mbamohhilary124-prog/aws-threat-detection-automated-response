@@ -126,12 +126,6 @@ flowchart TD
 This project was temporarily deployed in AWS for controlled validation and then destroyed using Terraform to prevent ongoing charges. Recreating the environment may incur AWS costs. Always review the Terraform destroy plan carefully after testing.
 
 
-## Security Notice
-
-
-
-This repository must not contain credentials, Terraform state, AWS account numbers, private keys, or unsanitized findings.
-
 
 
 ## Author
