@@ -123,10 +123,7 @@ flowchart TD
 
 ## Cost and Cleanup
 
-
-
-Some services may generate AWS charges. Resources will be deployed only when required and removed with Terraform after validation. Detailed cost and cleanup instructions will be added before deployment.
-
+This project was temporarily deployed in AWS for controlled validation and then destroyed using Terraform to prevent ongoing charges. Recreating the environment may incur AWS costs. Always review the Terraform destroy plan carefully after testing.
 
 
 ## Security Notice
